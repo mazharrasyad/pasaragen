@@ -1,0 +1,18 @@
+{
+  "local": {
+    "pasar": "http://127.0.0.1:8100/",
+    "shops": {
+      "dapur_bu_sri": "http://localhost:8101/",
+      "kue_mbak_ani": "http://localhost:8102/",
+      "kurir_kampung": "http://localhost:8103/"
+    }
+  },
+  "prod": {
+    "pasar": "https://pasar.187-124-138-96.sslip.io/",
+    "shops": {
+      "dapur_bu_sri": "https://dapur-bu-sri.187-124-138-96.sslip.io/",
+      "kue_mbak_ani": "https://kue-mbak-ani.187-124-138-96.sslip.io/",
+      "kurir_kampung": "https://kurir-kampung.187-124-138-96.sslip.io/"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "kue_mbak_ani",
+  "name": "Kue Mbak Ani",
+  "category": "Traditional snacks",
+  "tagline": "Jajanan pasar and snack boxes, baked and steamed every morning.",
+  "about": "Two sisters selling traditional Indonesian snacks from their front porch, now taking orders for events.",
+  "city": "South Jakarta",
+  "districts": ["Kebayoran Baru", "Mampang Prapatan", "Setiabudi"],
+  "hours": { "days": [0, 1, 2, 3, 4, 5, 6], "open": "06:00", "close": "17:00" },
+  "fulfilment": { "delivery": true, "pickup": true },
+  "deliveryFee": 15000,
+  "freeDeliveryFrom": 400000,
+  "payment": "Bank transfer before delivery or cash on pickup.",
+  "theme": { "primary": "#86198f", "accent": "#701a75", "soft": "#fdf4ff" },
+  "emoji": "🧁",
+  "items": [
+    { "id": "snack_box_3", "name": "Snack Box (3 pieces)", "description": "Risoles mayo, kue lumpur and lemper ayam in a paper box.", "price": 12000, "unit": "box", "minQty": 20, "leadHours": 12, "tags": ["halal"] },
+    { "id": "snack_box_4", "name": "Snack Box (4 pieces)", "description": "Snack Box 3 plus a slice of bolu pandan.", "price": 16000, "unit": "box", "minQty": 20, "leadHours": 12, "tags": ["halal"] },
+    { "id": "risoles_mayo", "name": "Risoles Mayo", "description": "Crispy crepe roll with smoked beef, egg and mayonnaise.", "price": 4000, "unit": "piece", "minQty": 25, "leadHours": 12, "tags": ["halal"] },
+    { "id": "kue_lumpur", "name": "Kue Lumpur", "description": "Soft potato and coconut milk cake with raisins.", "price": 3500, "unit": "piece", "minQty": 25, "leadHours": 12, "tags": ["halal", "vegetarian"] },
+    { "id": "klepon", "name": "Klepon", "description": "Pandan rice balls filled with palm sugar, rolled in coconut.", "price": 2500, "unit": "piece", "minQty": 30, "leadHours": 12, "tags": ["halal", "vegetarian", "vegan"] }
+  ],
+  "policies": [
+    "Orders can be changed up to 8 hours before delivery.",
+    "Snacks are best eaten the same day."
+  ],
+  "cannot": ["birthday cakes", "drinks", "same-day orders", "deliveries outside the listed districts"]
+}

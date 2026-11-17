@@ -1,0 +1,28 @@
+{
+  "id": "kurir_kampung",
+  "name": "Kurir Kampung",
+  "category": "Local delivery",
+  "tagline": "Neighbourhood couriers by motorbike and small van.",
+  "about": "A cooperative of local drivers who pick up from small shops and deliver within South Jakarta.",
+  "city": "South Jakarta",
+  "districts": ["Kebayoran Baru", "Kebayoran Lama", "Cilandak", "Pesanggrahan", "Mampang Prapatan", "Setiabudi", "Pancoran"],
+  "hours": { "days": [0, 1, 2, 3, 4, 5, 6], "open": "06:00", "close": "21:00" },
+  "fulfilment": { "delivery": true, "pickup": false },
+  "deliveryFee": 0,
+  "freeDeliveryFrom": 0,
+  "payment": "Cash to the driver at pickup.",
+  "theme": { "primary": "#047857", "accent": "#065f46", "soft": "#ecfdf5" },
+  "emoji": "🛵",
+  "kind": "service",
+  "items": [
+    { "id": "motor_dekat", "name": "Motorbike, same district", "description": "One pickup and one drop-off in the same district. Up to 20 kg or 40 food boxes.", "price": 18000, "unit": "trip", "minQty": 1, "leadHours": 2, "tags": [] },
+    { "id": "motor_jauh", "name": "Motorbike, across districts", "description": "One pickup and one drop-off in different districts. Up to 20 kg or 40 food boxes.", "price": 30000, "unit": "trip", "minQty": 1, "leadHours": 2, "tags": [] },
+    { "id": "van_kecil", "name": "Small van", "description": "Up to 300 kg or 200 food boxes, with a helper to carry.", "price": 150000, "unit": "trip", "minQty": 1, "leadHours": 12, "tags": [] },
+    { "id": "multi_stop", "name": "Extra pickup stop", "description": "Add one more pickup to a trip, such as collecting from two shops.", "price": 10000, "unit": "stop", "minQty": 1, "leadHours": 2, "tags": [] }
+  ],
+  "policies": [
+    "Give the pickup and drop-off addresses in the order notes on our page.",
+    "Waiting longer than 15 minutes at a pickup costs Rp5.000 per 15 minutes, paid to the driver."
+  ],
+  "cannot": ["deliveries outside the listed districts", "frozen goods", "online payment", "cash-on-delivery collection for shops"]
+}

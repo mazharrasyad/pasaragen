@@ -1,0 +1,29 @@
+{
+  "id": "dapur_bu_sri",
+  "name": "Dapur Bu Sri",
+  "category": "Catering",
+  "tagline": "Home-cooked rice boxes for meetings, arisan and family events.",
+  "about": "A home kitchen run by one family since 2014. Every box is cooked the morning it is delivered.",
+  "city": "South Jakarta",
+  "districts": ["Kebayoran Baru", "Kebayoran Lama", "Cilandak", "Pesanggrahan"],
+  "hours": { "days": [1, 2, 3, 4, 5, 6], "open": "07:00", "close": "19:00" },
+  "fulfilment": { "delivery": true, "pickup": true },
+  "deliveryFee": 20000,
+  "freeDeliveryFrom": 750000,
+  "payment": "Cash or bank transfer when the order arrives.",
+  "theme": { "primary": "#9a3412", "accent": "#7c2d12", "soft": "#fff7ed" },
+  "emoji": "🍱",
+  "items": [
+    { "id": "nasi_box_ayam_bakar", "name": "Nasi Box Ayam Bakar", "description": "Rice, grilled chicken thigh, tempe, sambal and fresh vegetables.", "price": 32000, "unit": "box", "minQty": 10, "leadHours": 24, "tags": ["halal"] },
+    { "id": "nasi_box_rendang", "name": "Nasi Box Rendang", "description": "Rice, beef rendang, potato balado, cassava leaves and sambal hijau.", "price": 42000, "unit": "box", "minQty": 10, "leadHours": 24, "tags": ["halal", "spicy"] },
+    { "id": "nasi_box_sayur", "name": "Nasi Box Sayur Lodeh", "description": "Rice, vegetable lodeh, tofu, tempe and crackers. No meat or fish.", "price": 25000, "unit": "box", "minQty": 10, "leadHours": 24, "tags": ["halal", "vegetarian"] },
+    { "id": "tumpeng_mini", "name": "Tumpeng Mini", "description": "Yellow rice cone for 1 person with six side dishes.", "price": 55000, "unit": "portion", "minQty": 5, "leadHours": 48, "tags": ["halal"] },
+    { "id": "prasmanan_paket", "name": "Prasmanan Package", "description": "Buffet for 50 people: rice, 3 mains, soup, crackers and fruit. Includes serving dishes.", "price": 2250000, "unit": "package", "minQty": 1, "leadHours": 72, "tags": ["halal"] }
+  ],
+  "policies": [
+    "You can change or cancel an order free of charge up to 12 hours before the delivery time by contacting the kitchen.",
+    "Deliveries go to the districts listed only.",
+    "Each box comes with a spoon and a napkin. Drinks are not included."
+  ],
+  "cannot": ["drinks", "custom menus outside the list", "same-day orders", "online payment", "deliveries outside the listed districts"]
+}

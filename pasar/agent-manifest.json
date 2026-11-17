@@ -1,0 +1,47 @@
+{
+  "brand": "Pasar Concierge",
+  "networks": [
+    {
+      "name": "pasar",
+      "front_man": "pasar_concierge",
+      "hocon": "./pasar.network.json",
+      "description": "Plan a purchase across several small shops: the concierge asks each shop's own assistant, compares their answers and puts a plan with order links on the page.",
+      "tags": ["agentified-website", "umkm", "pasaragen", "directory", "marketplace"],
+      "sample_queries": [
+        "Lunch and snacks for 30 people the day after tomorrow at 12:00, budget Rp2.000.000.",
+        "Vegetarian rice boxes for 15 people on Saturday at 11:00, delivered.",
+        "Which shops deliver to Setiabudi, and what do they sell?",
+        "Book me a hotel in Bali."
+      ]
+    }
+  ],
+  "llm_router": { "base_url": "https://api.otari.ai/api/v1", "mock": false, "byok_router": "https://api.otari.ai/api/v1" },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Pasar calls the shop sites in allowed_peers, each after the visitor agrees on a card. Only the request text is sent; the visitor's district only when they allow it."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "pasar",
+    "front_man": "pasar_concierge",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": { "primary": "#0f766e" },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [{ "network": "pasar", "front_man": "pasar_concierge", "aliases": ["pasar", "pasar_concierge"], "url": "pasar" }],
+    "imports": [],
+    "link_updates": { "mode": "browser-local" }
+  },
+  "deployment": { "mode": "static", "self_contained_runtime": true, "browser_mock": false, "direct_byok": true, "direct_mcp_requires_cors": true, "public_mcp_facade": false },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": ["get_pasar_state", "set_plan", "clear_plan"]
+  },
+  "directory": { "profile": "pasaragen-directory/v1", "url": "./directory.json" }
+}

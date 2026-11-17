@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} · {{category}}</title>
+  <meta name="description" content="{{tagline}}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{emoji}}</text></svg>">
+  <link rel="agent-manifest" href="./agent-manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+  <style>:root { --primary: {{primary}}; --accent: {{accent}}; --soft: {{soft}}; }</style>
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./site.js"></script>
+</head>
+<body>
+  <p class="demo-banner">Demo shop for the Open Agentic Web Challenge. It is fictional: nothing is paid, cooked or delivered.</p>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">{{emoji}} {{category}} · {{city}}</p>
+      <h1>{{name}}</h1>
+      <p class="tagline">{{tagline}}</p>
+      <nav><a href="#menu">Menu</a> <a href="#order">Order</a> <a href="#assistant">Ask our assistant</a> <a href="#for-agents">For agents</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="facts" aria-label="Shop facts">
+      <div><h2>Open</h2><p>{{hours}}</p></div>
+      <div><h2>We deliver to</h2><p>{{districts}}</p></div>
+      <div><h2>Delivery</h2><p>{{delivery}}</p></div>
+      <div><h2>Payment</h2><p>{{payment}}</p></div>
+    </section>
+
+    <p class="about">{{about}}</p>
+
+    <section id="menu" aria-labelledby="menu-heading">
+      <h2 id="menu-heading">{{menuHeading}}</h2>
+      <div id="catalog" class="catalog"></div>
+    </section>
+
+    <section id="order" class="order" aria-labelledby="order-heading">
+      <h2 id="order-heading">Your order</h2>
+      <p id="from-plan" class="from-plan" hidden>This cart came from a Pasar plan. Check it, add your details and place the order here.</p>
+      <div class="order-grid">
+        <div class="cart">
+          <ul id="cart-lines" class="cart-lines"></ul>
+          <dl class="cart-totals">
+            <dt>Items</dt><dd id="cart-items-total">Rp0</dd>
+            <dt>Delivery</dt><dd id="cart-delivery">—</dd>
+            <dt>Total</dt><dd id="cart-total">Rp0</dd>
+          </dl>
+          <p id="quote-status" role="status"></p>
+        </div>
+        <form id="order-form" class="order-form">
+          <label>How
+            <select id="fulfilment" name="fulfilment">{{fulfilmentOptions}}</select>
+          </label>
+          <div class="row">
+            <label>Date <input id="order-date" name="date" type="date" required></label>
+            <label>Time <input id="order-time" name="time" type="time" required></label>
+          </div>
+          <label>Name <input name="name" autocomplete="name" required></label>
+          <label>Phone <input name="phone" type="tel" autocomplete="tel" required></label>
+          <div id="delivery-fields">
+            <label>District
+              <select name="district">{{districtOptions}}</select>
+            </label>
+            <label>Address <input name="address" autocomplete="street-address"></label>
+          </div>
+          <label>Notes <textarea name="notes" rows="2"></textarea></label>
+          <button type="submit">Place order</button>
+          <p id="order-result" class="result" role="status" hidden></p>
+        </form>
+      </div>
+      <details class="lookup">
+        <summary>Check an order</summary>
+        <form id="lookup-form">
+          <label>Order code <input name="code" required></label>
+          <label>Phone <input name="phone" type="tel" required></label>
+          <button type="submit">Check</button>
+        </form>
+        <p id="lookup-result" role="status" hidden></p>
+      </details>
+    </section>
+
+    <section class="policies" aria-labelledby="policies-heading">
+      <h2 id="policies-heading">Good to know</h2>
+      <ul>{{policies}}</ul>
+    </section>
+
+    <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+      <h2 id="assistant-heading">Ask {{name}}</h2>
+      <p>Our assistant knows the menu and our rules, can fill your cart and, after you confirm, place the order.</p>
+      <p class="assistant-note">Your messages and this page's data go to the AI provider you choose in the settings below, with your own key. We never see your key. You confirm anything that cannot be undone before it happens.</p>
+      <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+      <div id="agent-app">
+        <div data-ns-slot="header"></div>
+        <div class="assistant-panels">
+          <div data-ns-slot="chat"></div>
+          <div data-ns-slot="agents"></div>
+        </div>
+        <div data-ns-slot="settings"></div>
+      </div>
+    </section>
+
+    <section id="for-agents" class="for-agents" aria-labelledby="agents-heading">
+      <h2 id="agents-heading">For agents</h2>
+      <p>This is an open agentic website. Any agent site can run our published network in its own visitor's browser, with that visitor's consent and key.</p>
+      <ul>
+        <li>Network URL: <code>{{networkUrl}}</code></li>
+        <li><a href="./agent-manifest.json">agent-manifest.json</a> · <a href="./{{network}}.network.json">{{network}}.network.json</a> · <a href="./links.json">links.json</a></li>
+        <li>Deep link to a filled cart: <code>{{pageUrl}}?cart=&lt;itemId&gt;:&lt;qty&gt;,…&amp;date=YYYY-MM-DD&amp;time=HH:MM</code></li>
+      </ul>
+      <p class="small">Made with <a href="{{generatorUrl}}">PasarAgen's Agentify UMKM generator</a>. Listed on <a href="{{pasarUrl}}">Pasar</a>.</p>
+    </section>
+  </main>
+  <footer class="wrap small">{{name}} is a fictional business made for a demo.</footer>
+</body>
+</html>

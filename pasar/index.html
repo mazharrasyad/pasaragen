@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pasar · one ask, many small shops</title>
+  <meta name="description" content="An open agentic marketplace: Pasar's concierge asks small shops' own agents, compares their published prices and hands you order links.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧺</text></svg>">
+  <link rel="agent-manifest" href="./agent-manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./site.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">🧺 PasarAgen · open agentic web for small shops</p>
+      <h1>One ask. Many small shops.</h1>
+      <p class="tagline">Pasar's concierge asks each shop's <em>own</em> agent, compares their published prices and builds your plan. You order on the shop's page. No platform in the middle, no fees, no lock-in.</p>
+      <nav><a href="#plan">Your plan</a> <a href="#assistant">Concierge</a> <a href="#directory-section">Shops</a> <a href="#how">How it works</a> <a href="#agentify">Agentify your shop</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="top-grid">
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Concierge</h2>
+        <p class="assistant-note">Runs in your browser on the AI provider and key you choose in the settings below. Before it contacts a shop, a card asks you. Shops get only the short request on the card.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section id="plan" class="plan" aria-labelledby="plan-heading">
+          <div class="plan-head">
+            <h2 id="plan-heading">Your plan</h2>
+            <button id="clear-plan" type="button" class="ghost" hidden>Clear</button>
+          </div>
+          <p id="plan-event" class="small"></p>
+          <div id="plan-body"></div>
+          <p id="plan-total" class="plan-total"></p>
+          <p class="small">✓ price matches the shop's published manifest · ≠ differs · Delivery fees and final totals are confirmed on each shop's page.</p>
+        </section>
+
+        <section class="privacy" aria-labelledby="privacy-heading">
+          <h2 id="privacy-heading">Private to this page</h2>
+          <label>My district
+            <select id="profile-district"></select>
+          </label>
+          <label class="check"><input id="profile-share" type="checkbox"> Let the concierge tell shops my district</label>
+          <p class="small">Stays in this browser. Pasar never asks for your name, phone or address: you give those only to the shop you order from.</p>
+        </section>
+      </aside>
+    </div>
+
+    <section id="directory-section" aria-labelledby="directory-heading">
+      <h2 id="directory-heading">Shops on Pasar</h2>
+      <p class="small">Pasar reads each shop's public <code>agent-manifest.json</code> from its own website, like any agent would, and checks it against the open agentic web spec.</p>
+      <div id="directory" class="directory"></div>
+    </section>
+
+    <section id="how" class="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">How it works</h2>
+      <ol class="steps">
+        <li><strong>Every shop owns its agent.</strong> Each shop is its own website with a published agent network (plain JSON) and its menu, rules and cart as tools.</li>
+        <li><strong>You ask once.</strong> The concierge decides which shops can help and asks each one. A card shows you the shop and the exact request first.</li>
+        <li><strong>Shops answer in your browser.</strong> The shop's network runs here, on your key. The shop never sees your key, your chat or your details.</li>
+        <li><strong>Prices are checked.</strong> Every price in the plan is compared with the shop's own published manifest, so a wrong number shows up.</li>
+        <li><strong>You order at the shop.</strong> "Order at …" opens the shop's page with the cart filled. The shop's assistant can finish the order with you.</li>
+      </ol>
+    </section>
+
+    <section id="agentify" class="agentify" aria-labelledby="agentify-heading">
+      <h2 id="agentify-heading">Agentify your shop</h2>
+      <p>Write your menu as a small JSON file and run the generator. You get a complete open agentic website: a shop page with cart and orders, an agent network, the public manifest and the browser runtime. Host it anywhere static, then add it to <code>directory.json</code>.</p>
+      <pre><code>node generator/agentify-umkm.mjs catalogs/my_shop.json \
+  --out sites/my_shop --page-url https://my-shop.example/</code></pre>
+      <p class="small">Open source: <a href="https://github.com/mazharrasyad/pasaragen">github.com/mazharrasyad/pasaragen</a>. Built on the <a href="https://github.com/cognizant-ai-labs/agentic-web">agentic-web</a> reference runtime.</p>
+    </section>
+  </main>
+  <footer class="wrap small">PasarAgen by HackRasaz for the Open Agentic Web Challenge. The shops listed are fictional demos: nothing is paid, cooked or delivered.</footer>
+</body>
+</html>
