@@ -1,3 +1,5 @@
+// Edited by PasarAgen: _readSse keeps tool_calls[].extra_content (Gemini thought_signature)
+// and separates parallel tool calls that share an index but have different ids (Gemini).
 // llm.js — the LlmClient intrinsic: an OpenAI-compatible chat-completions client.
 
 import { assertModelForRouter, normalizeModelName } from "./model.js";
@@ -186,11 +188,20 @@ export class LlmClient {
       }
       if (delta.tool_calls) {
         for (const tc of delta.tool_calls) {
-          const idx = tc.index ?? 0;
+          let idx = tc.index ?? 0;
+          // PasarAgen edit: Gemini streams parallel tool calls whole, all at index 0, each
+          // with its own id. A new id at a used index is a new call, not a continuation.
+          if (tc.id && toolCalls[idx]?.id && toolCalls[idx].id !== tc.id) {
+            idx = toolCalls.findIndex((t) => t && t.id === tc.id);
+            if (idx < 0) idx = toolCalls.length;
+          }
           if (!toolCalls[idx]) toolCalls[idx] = { id: tc.id, type: "function", function: { name: "", arguments: "" } };
           if (tc.id) toolCalls[idx].id = tc.id;
           if (tc.function?.name) toolCalls[idx].function.name += tc.function.name;
           if (tc.function?.arguments) toolCalls[idx].function.arguments += tc.function.arguments;
+          // PasarAgen edit: keep provider extras such as Gemini's thought_signature, which
+          // Gemini 3 requires back on each tool call in the next request.
+          if (tc.extra_content) toolCalls[idx].extra_content = tc.extra_content;
         }
       }
       if (choice.finish_reason) finishReason = choice.finish_reason;

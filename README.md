@@ -54,8 +54,9 @@ node scripts/serve-all.mjs
 ```
 
 Open http://127.0.0.1:8100/ (Pasar). The shops are on http://localhost:8101, 8102 and
-8103. Open **⚙ AI model settings** and choose a provider with your own key. Google AI
-Studio (Gemini) and Groq have free tiers. The key stays in your browser.
+8103. Open **⚙ AI model settings**, select **Google AI Studio** (free tier) or **Groq**, paste your
+own key and select **Save and start**. The key stays in your browser. Tested with
+`models/gemini-3.5-flash`.
 
 ```bash
 node --test "tests/*.test.mjs"
@@ -74,6 +75,14 @@ node --test "tests/*.test.mjs"
 3. Upload `sites/my_shop` to any static host that sends CORS headers on the public files
    (see `vendor/agentify-website/references/bundle_and_hosting.md`).
 4. Add the shop to Pasar's directory with a pull request.
+
+## Runtime fixes for Gemini
+
+The vendored runtime has two small fixes in `runtime/llm.js`, covered by
+`tests/llm-stream.test.mjs`, so that Gemini 3 works through Google's OpenAI-compatible
+endpoint. It keeps each tool call's `thought_signature`, and it no longer merges parallel tool
+calls that share a stream index. The Google AI Studio preset in `runtime/ui.js` now uses
+`models/gemini-3.5-flash`.
 
 ## Limits
 

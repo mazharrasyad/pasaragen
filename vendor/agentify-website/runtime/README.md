@@ -62,3 +62,9 @@ nsdeploy plans to move to a runtime built on the neuro-san TS package (nsdeploy 
 That runtime has no `website_*` tools yet. Before a site switches to it, move the edits
 above to it and check that it offers those tools and runs a partner network on the
 caller's model and step limit.
+
+PasarAgen edit: `llm.js` keeps `tool_calls[].extra_content` from streamed responses, so
+Gemini 3 models (which require their `thought_signature` back on every tool call) work through
+Google's OpenAI-compatible endpoint. It also splits parallel tool calls that Gemini streams at the
+same index with different ids, which were otherwise merged into one call with a joined name.
+`ui.js`: the Google AI Studio preset uses `models/gemini-3.5-flash`.

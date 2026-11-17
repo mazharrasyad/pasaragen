@@ -44,7 +44,9 @@ export const API_KEY_PROVIDERS = [
     name: "Google AI Studio",
     keyUrl: "https://aistudio.google.com/apikey",
     router: "https://generativelanguage.googleapis.com/v1beta/openai",
-    model: "gemini-3.8-flash",
+    // PasarAgen edit: Google's OpenAI endpoint lists models as "models/<id>"; 3.5 Flash
+    // is the newest that answered tool calls reliably on the free tier in our tests.
+    model: "models/gemini-3.5-flash",
     keyPrefixes: ["AIza"],
     accessNote: "Free tier",
   },
